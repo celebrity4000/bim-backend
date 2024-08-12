@@ -34,3 +34,14 @@ model Courses {
   author   Admin      @relation(fields: [authorId], references: [id])
   authorId String    @db.ObjectId
 }
+
+model manageRoles {
+  id  String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName   String
+  lastName  String
+  email   String
+  password  String
+  addCourse   Boolean
+  editCourse  Boolean
+  deleteCourse  Boolean
+}
