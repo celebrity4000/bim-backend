@@ -7,23 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Admin {
+model admin {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
   email   String   @unique
   name    String
   password String
-  courses Courses[]
+  courses course[]
+  blogs blog[]
 }
 
-model Users {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  firstName     String    @unique
-  lastName    String
-  email     String
-  phoneNo   String
-}
-
-model Courses {
+model course {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   price String
@@ -31,17 +24,18 @@ model Courses {
   description String
   content String
   imageUrl String
-  author   Admin      @relation(fields: [authorId], references: [id])
-  authorId String    @db.ObjectId
+  author   admin      @relation(fields: [authorId], references: [id])
+  authorId String    @db.ObjectId  
 }
 
-model manageRoles {
-  id  String @id @default(auto()) @map("_id") @db.ObjectId
-  firstName   String
-  lastName  String
-  email   String
-  password  String
-  addCourse   Boolean
-  editCourse  Boolean
-  deleteCourse  Boolean
+model blog {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  authorName  String
+  date    DateTime
+  title String
+  about  String
+  description String
+  image String
+  author   admin      @relation(fields: [authorId], references: [id])
+  authorId String    @db.ObjectId  
 }
