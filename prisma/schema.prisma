@@ -24,6 +24,7 @@ model course {
   description String
   content String
   imageUrl String
+  videoUrl String
   author   admin      @relation(fields: [authorId], references: [id])
   authorId String    @db.ObjectId  
 }
