@@ -1,39 +1,31 @@
 import { Request, Response } from "express";
 import { asyncHandler } from "../../utils/asyncHandler";
 import prisma from "../../db";
-import uploadImage from "../../utils/cloudinaryConfig";
+import { uploadOnCloudinary } from "../../utils/cloudinaryConfig";
 
 export const editCourse = asyncHandler(async (req: Request, res: Response) => {
     try {
-        const { title, price, offerPrice, description, content, image } = req.body;
+        const { title, price, offerPrice, description, content } = req.body;
         const { courseId, adminId } = req.params
 
-        const cloudinaryUrl = uploadImage(image);
+        const thumbnailImage = req.file?.path
+        const cloudinaryUrl = await uploadOnCloudinary (thumbnailImage) as string;
 
-        const admin = await prisma.admin.findUnique({
-            where: { id: adminId }
+        await prisma.course.update({
+            where: {
+                id: courseId,
+                authorId: adminId
+            },
+            data: {
+                title: title,
+                price: price,
+                offerPrice: offerPrice,
+                description: description,
+                content: content,
+                imageUrl: cloudinaryUrl
+            }
         })
-
-        if (admin.editCourse === true) {
-            await prisma.course.update({
-                where: {
-                    id: courseId,
-                    adminId: adminId
-                },
-                data: {
-                    title: title,
-                    price: price,
-                    offerPrice: offerPrice,
-                    description: description,
-                    content: content,
-                    imageaUrl: cloudinaryUrl
-                }
-            })
-            res.send ("Course edited successfully")
-        }
-        else {
-            res.send ("Admin edit course access required")
-        }
+        res.send ("Course edited successfully")
 
     } catch (error) {
         res.send('cant edit course' + error);

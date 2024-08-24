@@ -7,7 +7,7 @@ export const getCourse = asyncHandler (async (req,res)=>{
 
         const courses = await prisma.course.findMany({
             where:{
-                adminId: adminId,
+                authorId: adminId,
             }
         });
         res.send (courses);

@@ -3,19 +3,20 @@ import { createCourse } from '../controller/course/createCourse.controller';
 import { editCourse } from '../controller/course/editCourse.controller';
 import { deleteCourse } from '../controller/course/deleteCourse.controller';
 import { getCourse } from '../controller/course/getCourse.controller';
+import { upload } from '../middleware/multer.middleware';
 
 const router = express.Router();
 
 // Get courses route
-router.route('/getCourse').get(getCourse);
+router.route('/get').get(getCourse);
 
 // Create course route
-router.route('/createCourse').post(createCourse);
+router.route('/create').post(upload.single('thumbnailImage'),createCourse);
 
 // Edit course route
-router.route('/editCourse/:adminId/:courseId').post(editCourse);
+router.route('/edit/:adminId/:courseId').post(upload.single('thumbnailImage'),editCourse);
 
 // Delete course route
-router.route('/deleteCourse/:adminId/:courseId').post(deleteCourse);
+router.route('/delete/:adminId/:courseId').post(deleteCourse);
 
 export default router;
