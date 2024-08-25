@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 // get blogs route
-router.route('/get').get(getBlog);
+router.route('/:adminId/get').get(getBlog);
 
 // Create Blog route
 router.route('/:adminId/create').post(upload.single("blogImage"),createBlog);

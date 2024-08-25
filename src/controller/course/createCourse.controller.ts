@@ -19,6 +19,7 @@ export const createCourse = asyncHandler (async (req: Request,res: Response)=>{
                 description: description,
                 content: content,
                 imageUrl: cloudinaryUrl,
+                videoUrl: '',
                 author: {
                     connect: {
                         id: adminId

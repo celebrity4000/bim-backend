@@ -8,10 +8,10 @@ import { upload } from '../middleware/multer.middleware';
 const router = express.Router();
 
 // Get courses route
-router.route('/get').get(getCourse);
+router.route('/:adminId/get').get(getCourse);
 
 // Create course route
-router.route('/create').post(upload.single('thumbnailImage'),createCourse);
+router.route('/:adminId/create').post(upload.single('thumbnailImage'),createCourse);
 
 // Edit course route
 router.route('/edit/:adminId/:courseId').post(upload.single('thumbnailImage'),editCourse);
