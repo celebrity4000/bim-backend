@@ -8,7 +8,7 @@ export const createCourse = asyncHandler (async (req: Request,res: Response)=>{
         const {title, price, offerPrice, description, content} = req.body;
         const {adminId} = req.params;
 
-        const thumbnailImage = req.file?.path
+        const thumbnailImage = req.file?.path as string
         const cloudinaryUrl = await uploadOnCloudinary (thumbnailImage) as string;
         
         const course = await prisma.course.create ({

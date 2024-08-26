@@ -1,7 +1,8 @@
+import { Request, Response } from "express";
 import prisma from "../../db";
 import { asyncHandler } from "../../utils/asyncHandler";
 
-export const getCourse = asyncHandler (async (req,res)=>{
+export const getCourse = asyncHandler (async (req: Request,res: Response)=>{
     try {
         const {adminId} = req.params;
 

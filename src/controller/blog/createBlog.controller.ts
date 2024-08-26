@@ -6,7 +6,7 @@ import { uploadOnCloudinary } from "../../utils/cloudinaryConfig";
 export const createBlog = asyncHandler(async (req: Request, res: Response) => {
     try {
         const { title, description, about, author, date } = req.body;
-        const image : string = req.file?.path as string
+        const image = req.file?.path as string
         const { adminId } = req.params;
 
         const imageUrl = await uploadOnCloudinary (image) as string;

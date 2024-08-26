@@ -8,7 +8,7 @@ export const editCourse = asyncHandler(async (req: Request, res: Response) => {
         const { title, price, offerPrice, description, content } = req.body;
         const { courseId, adminId } = req.params
 
-        const thumbnailImage = req.file?.path
+        const thumbnailImage = req.file?.path as string
         const cloudinaryUrl = await uploadOnCloudinary (thumbnailImage) as string;
 
         await prisma.course.update({
