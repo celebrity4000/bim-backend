@@ -6,23 +6,23 @@ export const signIn = asyncHandler(async (req, res) => {
     try {
         const { email, password } = req.body;
         try {
-            const user = await prisma.admin.findUnique({
+            const admin = await prisma.admin.findUnique({
                 where: {
                     email: email,
                 }
             })
-            if (!user) {
-                res.send("User does not exist");
+            if (!admin) {
+                res.send("Admin does not exist");
             }
             else {
-                bcrypt.compare(password, user.password, function (err, result) {
+                bcrypt.compare(password, admin.password, function (err, result) {
                     if (!result) {
                         res.send("Wrong Password");
                     }
                     else {
                         res.send({
                             message: "Login Successful",
-                            userId: user.id,
+                            adminId: admin.id,
                         });
                     }
                 });
