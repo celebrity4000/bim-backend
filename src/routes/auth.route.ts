@@ -3,6 +3,7 @@ import { signIn } from '../controller/auth/signIn.controller';
 import { signOut } from '../controller/auth/signOut.controller';
 import { signUp } from '../controller/auth/signUp.controller';
 
+
 const router = express.Router();
 
 // SignIn Route
