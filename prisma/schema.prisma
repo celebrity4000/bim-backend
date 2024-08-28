@@ -20,6 +20,8 @@ model course {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   price String
+  instructorName String
+  enrolledStudent String
   offerPrice String
   description String
   content String

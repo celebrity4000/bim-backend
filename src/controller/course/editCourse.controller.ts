@@ -5,7 +5,7 @@ import { uploadOnCloudinary } from "../../utils/cloudinaryConfig";
 
 export const editCourse = asyncHandler(async (req: Request, res: Response) => {
     try {
-        const { title, price, offerPrice, description, content } = req.body;
+        const { title, price, offerPrice, description, content, instructorName, enrolledStudent } = req.body;
         const { courseId, adminId } = req.params
 
         const thumbnailImage = req.file?.path as string
@@ -22,6 +22,8 @@ export const editCourse = asyncHandler(async (req: Request, res: Response) => {
                 offerPrice: offerPrice,
                 description: description,
                 content: content,
+                instructorName: instructorName,
+                enrolledStudent: enrolledStudent,
                 imageUrl: cloudinaryUrl
             }
         })
