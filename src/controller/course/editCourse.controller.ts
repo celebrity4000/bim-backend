@@ -9,24 +9,43 @@ export const editCourse = asyncHandler(async (req: Request, res: Response) => {
         const { courseId, adminId } = req.params
 
         const thumbnailImage = req.file?.path as string
-        const cloudinaryUrl = await uploadOnCloudinary (thumbnailImage) as string;
-
-        await prisma.course.update({
-            where: {
-                id: courseId,
-                authorId: adminId
-            },
-            data: {
-                title: title,
-                price: price,
-                offerPrice: offerPrice,
-                description: description,
-                content: content,
-                instructorName: instructorName,
-                enrolledStudent: enrolledStudent,
-                imageUrl: cloudinaryUrl
-            }
-        })
+        if (thumbnailImage){
+            const cloudinaryUrl = await uploadOnCloudinary (thumbnailImage) as string;
+    
+            await prisma.course.update({
+                where: {
+                    id: courseId,
+                    authorId: adminId
+                },
+                data: {
+                    title: title,
+                    price: price,
+                    offerPrice: offerPrice,
+                    description: description,
+                    content: content,
+                    instructorName: instructorName,
+                    enrolledStudent: enrolledStudent,
+                    imageUrl: cloudinaryUrl
+                }
+            })
+        }
+        else {
+            await prisma.course.update({
+                where: {
+                    id: courseId,
+                    authorId: adminId
+                },
+                data: {
+                    title: title,
+                    price: price,
+                    offerPrice: offerPrice,
+                    description: description,
+                    content: content,
+                    instructorName: instructorName,
+                    enrolledStudent: enrolledStudent,
+                }
+            })
+        }
         res.send ("Course edited successfully")
 
     } catch (error) {
