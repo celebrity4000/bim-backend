@@ -1,7 +1,8 @@
 import express from 'express'
-import blogsRoute from './routes/blog.route';
-import courseRoute from './routes/course.route';
-import authRoute from './routes/auth.route';
+import blogsRoute from './routes/blog.routes';
+import courseRoute from './routes/course.routes';
+import authRoute from './routes/auth.routes';
+import videoClassRoutes from './routes/videoClass.routes'
 import cors from 'cors'
 require('dotenv').config();
 
@@ -26,6 +27,7 @@ app.use (cors({
 app.use ('/api/blog', blogsRoute);
 app.use ('/api/course', courseRoute);
 app.use ('/api/auth', authRoute);
+app.use ('/', videoClassRoutes);
 
 app.listen (port, ()=>{
     console.log(`App is listning on : http://localhost:${port}`);    

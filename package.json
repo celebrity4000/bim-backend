@@ -12,7 +12,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@netless/fastboard": "^0.3.21",
+    "@netless/window-manager": "^0.4.75",
     "@prisma/client": "^5.19.0",
+    "agora-access-token": "^2.0.4",
+    "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.4.0",
     "cors": "^2.8.5",
@@ -22,7 +26,8 @@
     "multer": "^1.4.5-lts.1",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "white-web-sdk": "^2.16.51"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
