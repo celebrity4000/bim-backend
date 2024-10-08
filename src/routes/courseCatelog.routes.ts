@@ -1,9 +1,9 @@
 import express from 'express'
-import { createCourse } from '../controller/course/createCourse.controller';
-import { editCourse } from '../controller/course/editCourse.controller';
-import { deleteCourse } from '../controller/course/deleteCourse.controller';
-import { getCourse } from '../controller/course/getCourse.controller';
 import { upload } from '../middleware/multer.middleware';
+import { getCourse } from '../controller/courseManagement/courseCatelog/getCourse.controller';
+import { createCourse } from '../controller/courseManagement/courseCatelog/createCourse.controller';
+import { editCourse } from '../controller/courseManagement/courseCatelog/editCourse.controller';
+import { deleteCourse } from '../controller/courseManagement/courseCatelog/deleteCourse.controller';
 
 const router = express.Router();
 

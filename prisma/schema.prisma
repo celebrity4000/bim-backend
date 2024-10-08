@@ -42,3 +42,21 @@ model blog {
   author   admin      @relation(fields: [authorId], references: [id])
   authorId String    @db.ObjectId  
 }
+
+model batches {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  batchName String
+  startDate DateTime
+  endDate DateTime
+  trainer String
+  // students Student[]
+}
+
+model assignment {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  deadline DateTime
+  submissions Int
+  reviewed Int
+}

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import prisma from "../../db";
-import { asyncHandler } from "../../utils/asyncHandler";
+import prisma from "../../../db";
+import { asyncHandler } from "../../../utils/asyncHandler";
 
 export const deleteCourse = asyncHandler(async (req: Request, res: Response) => {
     try {

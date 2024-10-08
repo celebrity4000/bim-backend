@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
-import prisma from "../../db";
-import { asyncHandler } from "../../utils/asyncHandler";
-import { uploadOnCloudinary } from "../../utils/cloudinaryConfig";
+import prisma from "../../../db";
+import { asyncHandler } from "../../../utils/asyncHandler";
+import { uploadOnCloudinary } from "../../../utils/cloudinaryConfig";
 
 export const createCourse = asyncHandler (async (req: Request,res: Response)=>{
     try {
