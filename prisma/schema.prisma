@@ -8,55 +8,74 @@ datasource db {
 }
 
 model admin {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
-  name    String
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  email    String   @unique
+  name     String
   password String
-  courses course[]
-  blogs blog[]
+  courses  course[] //not needed
+  blogs    blog[]
 }
 
 model course {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  price String
-  instructorName String
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  price           String
+  instructorName  String
   enrolledStudent String
-  offerPrice String
-  description String
-  content String
-  imageUrl String
-  videoUrl String
-  author   admin      @relation(fields: [authorId], references: [id])
-  authorId String    @db.ObjectId  
+  offerPrice      String
+  description     String
+  content         String
+  imageUrl        String
+  videoUrl        String
+  author          admin  @relation(fields: [authorId], references: [id]) //not needed
+  authorId        String @db.ObjectId //not needed
+
+  // have to include students and teachers
 }
 
 model blog {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   authorName  String
-  date    DateTime
-  title String
-  about  String
+  date        DateTime
+  title       String
+  about       String
   description String
-  image String
-  author   admin      @relation(fields: [authorId], references: [id])
-  authorId String    @db.ObjectId  
+  image       String
+  author      admin    @relation(fields: [authorId], references: [id])
+  authorId    String   @db.ObjectId
 }
 
 model batches {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   batchName String
   startDate DateTime
-  endDate DateTime
-  trainer String
+  endDate   DateTime
+  trainer   String
   // students Student[]
 }
 
 model assignment {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
   description String
-  deadline DateTime
+  deadline    DateTime
   submissions Int
-  reviewed Int
+  reviewed    Int
+}
+
+model student {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  status    String
+  progress  String
+  batchName String
+}
+
+model trainer {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  date         DateTime
+  timeDuration Int
+  certificates String[]
+  // have to add more typos
 }
