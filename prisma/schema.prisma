@@ -43,6 +43,8 @@ model blog {
   image       String
   author      admin    @relation(fields: [authorId], references: [id])
   authorId    String   @db.ObjectId
+  participants Int?
+  dropouts   Int?
 }
 
 model batches {

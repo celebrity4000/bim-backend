@@ -4,7 +4,7 @@ import prisma from "../../../db";
 
 export const editBatch = asyncHandler(async (req: Request, res: Response) => {
     try {
-        const { batchName, startDate, endDate, trainer } = req.body;
+        const { batchName, startDate, endDate, trainer, participants, dropouts } = req.body;
         const { batchId } = req.params
 
         await prisma.batches.update({
@@ -15,7 +15,9 @@ export const editBatch = asyncHandler(async (req: Request, res: Response) => {
                 batchName: batchName,
                 startDate: startDate,
                 endDate: endDate,
-                trainer: trainer
+                trainer: trainer,
+                participants: participants,
+                dropouts: dropouts,
             }
         })
         res.send ("Batch edited successfully")
