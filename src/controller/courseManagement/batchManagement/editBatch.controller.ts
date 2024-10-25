@@ -16,8 +16,8 @@ export const editBatch = asyncHandler(async (req: Request, res: Response) => {
                 startDate: startDate,
                 endDate: endDate,
                 trainer: trainer,
-                participants: participants,
-                dropouts: dropouts,
+                participants: parseInt(participants),
+                dropouts: parseInt(dropouts),
             }
         })
         res.send ("Batch edited successfully")

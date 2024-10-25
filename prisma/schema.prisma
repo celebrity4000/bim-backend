@@ -43,8 +43,6 @@ model blog {
   image       String
   author      admin    @relation(fields: [authorId], references: [id])
   authorId    String   @db.ObjectId
-  participants Int?
-  dropouts   Int?
 }
 
 model batches {
@@ -54,6 +52,8 @@ model batches {
   endDate   DateTime
   trainer   String
   // students Student[]
+    participants Int?
+  dropouts   Int?
 }
 
 model assignment {
