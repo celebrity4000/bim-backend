@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
-import prisma from "../../../db";
-import { asyncHandler } from "../../../utils/asyncHandler";
+import { asyncHandler } from "../../../../utils/asyncHandler";
+import prisma from "../../../../db";
+
+
 
 export const deleteAssignment = asyncHandler(async (req: Request, res: Response) => {
     try {

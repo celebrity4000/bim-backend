@@ -2,7 +2,6 @@ import express from 'express'
 import blogsRoute from './routes/blog.routes';
 import courseCatelogRoute from './routes/courseCatelog.routes';
 import assignmentRoute from './routes/assignment.routes';
-import batchManagementRoute from './routes/batchManagement.routes';
 import authRoute from './routes/auth.routes';
 // import videoClassRoutes from './routes/videoClass.routes'
 import cors from 'cors'
@@ -29,7 +28,6 @@ app.use (cors({
 app.use ('/api/blog', blogsRoute);
 app.use ('/api/course', courseCatelogRoute);
 app.use ('/api/assignment', assignmentRoute);
-app.use ('/api/batch', batchManagementRoute);
 app.use ('/api/auth', authRoute);
 
 // app.use ('/', videoClassRoutes);

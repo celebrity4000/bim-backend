@@ -12,7 +12,6 @@ model admin {
   email    String @unique
   name     String
   password String
-  blogs    blog[]
 }
 
 model blog {
@@ -23,8 +22,6 @@ model blog {
   about       String
   description String
   image       String
-  author      admin    @relation(fields: [authorId], references: [id])
-  authorId    String   @db.ObjectId
 }
 
 model course {
@@ -48,6 +45,7 @@ model assignment {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
+  creationDate DateTime @default(now())
   deadline    DateTime
   submissions Int
   reviewed    Int

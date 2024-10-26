@@ -6,7 +6,7 @@ import { uploadOnCloudinary } from "../../utils/cloudinaryConfig";
 export const editBlog = asyncHandler(async (req: Request, res: Response) => {
     try {
         const { title, description, about, author, dateAndTime } = req.body;
-        const { blogId, adminId } = req.params
+        const { blogId } = req.params
         
         const blogImage = req.file?.path as string
         if (blogImage){
@@ -14,7 +14,6 @@ export const editBlog = asyncHandler(async (req: Request, res: Response) => {
             await prisma.blog.update({
                 where: {
                     id: blogId,
-                    authorId: adminId
                 },
                 data: {
                     title: title,                
@@ -30,7 +29,6 @@ export const editBlog = asyncHandler(async (req: Request, res: Response) => {
             await prisma.blog.update({
                 where: {
                     id: blogId,
-                    authorId: adminId
                 },
                 data: {
                     title: title,                
