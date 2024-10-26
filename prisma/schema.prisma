@@ -42,17 +42,17 @@ model course {
 }
 
 model assignment {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  creationDate DateTime @default(now())
-  deadline    DateTime
-  submissions Int
-  reviewed    Int
-  students    student[]
-  teacher     trainer[]
-  course      course    @relation(fields: [courseId], references: [id])
-  courseId    String    @db.ObjectId
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  creationDate DateTime  @default(now())
+  deadline     DateTime
+  submissions  Int
+  reviewed     Int
+  students     student[]
+  teacher      trainer[]
+  course       course    @relation(fields: [courseId], references: [id])
+  courseId     String    @db.ObjectId
 }
 
 model student {
