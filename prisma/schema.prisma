@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model admin {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  name     String
+  password String
+}
+
+model blog {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  authorName  String
+  date        DateTime
+  title       String
+  about       String
+  description String
+  image       String
+}
+
+model course {
+  id              String       @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  price           String
+  instructorName  String
+  enrolledStudent String
+  offerPrice      String
+  description     String
+  content         String
+  imageUrl        String
+  videoUrl        String
+  assignments     assignment[]
+  students        student[]
+  teacher         trainer[]
+  feedbacks       feedback[]
+}
+
+model assignment {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  creationDate DateTime  @default(now())
+  deadline     DateTime
+  submissions  Int
+  reviewed     Int
+  students     student[]
+  teacher      trainer[]
+  course       course    @relation(fields: [courseId], references: [id])
+  courseId     String    @db.ObjectId
+}
+
+model batches {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  batchName String
+  startDate DateTime
+  endDate   DateTime
+  trainer   String
+  participants Int?
+  dropouts   Int?
+}
+
+model student {
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  status         String
+  progress       String
+  batchName      String
+  assignedCourse course     @relation(fields: [courseId], references: [id])
+  courseId       String     @db.ObjectId
+  feedbacks      feedback[]
+  assignment     assignment @relation(fields: [assignmentId], references: [id])
+  assignmentId   String     @db.ObjectId
+}
+
+model trainer {
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  date           DateTime
+  timeDuration   Int
+  certificates   String[]
+  assignedCourse course     @relation(fields: [courseId], references: [id])
+  courseId       String     @db.ObjectId
+  assignment     assignment @relation(fields: [assignmentId], references: [id])
+  assignmentId   String     @db.ObjectId
+  feedbacks      feedback[]
+}
+
+model feedback {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  feedback   String
+  student    student @relation(fields: [studentId], references: [id])
+  studentId  String  @db.ObjectId
+  teacher    trainer @relation(fields: [teacherId], references: [id])
+  teacherId  String  @db.ObjectId
+  courseName course  @relation(fields: [courseId], references: [id])
+  courseId   String  @db.ObjectId
+}

@@ -1,0 +1,40 @@
+{
+  "name": "bim_backend",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon src/index.ts",
+    "start": "node dist/index.js",
+    "db:migrate": "NODE_PATH=dist/ node --env-file=.env dist/db/migration.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@netless/fastboard": "^0.3.21",
+    "@netless/window-manager": "^0.4.75",
+    "@prisma/client": "^5.19.0",
+    "agora-access-token": "^2.0.4",
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "multer": "^1.4.5-lts.1",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4",
+    "white-web-sdk": "^2.16.51"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/multer": "^1.4.12",
+    "nodemon": "^3.1.7",
+    "prisma": "^5.19.0"
+  }
+}
