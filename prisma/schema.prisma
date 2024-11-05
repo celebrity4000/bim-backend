@@ -68,20 +68,25 @@ model batches {
 model student {
   id             String     @id @default(auto()) @map("_id") @db.ObjectId
   name           String
+  email          String     @unique
+  password       String
   status         String?
   progress       String?
   batchName      String?
   assignedCourse course?    @relation(fields: [courseId], references: [id])
-  courseId       String?     @db.ObjectId
+  courseId       String?    @db.ObjectId
   feedbacks      feedback[]
   assignment     assignment? @relation(fields: [assignmentId], references: [id])
-  assignmentId   String?     @db.ObjectId
+  assignmentId   String?    @db.ObjectId
 }
+
 
 model trainer {
   id             String     @id @default(auto()) @map("_id") @db.ObjectId
   name           String
-  date           DateTime
+  email          String     @unique
+  password       String
+  date           DateTime?
   timeDuration   Int?
   certificates   String[]
   assignedCourse course?     @relation(fields: [courseId], references: [id])
