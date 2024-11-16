@@ -21,7 +21,6 @@ export const validateUserSession = asyncHandler(async (req, res) => {
             res.status(401).send("Unauthorized Access");
             return;
         }
-        console.log(decoded);
 
         if ((decoded as jwt.JwtPayload).studentId) {
             const findUser = await prisma.student.findFirst({
@@ -61,9 +60,30 @@ export const validateUserSession = asyncHandler(async (req, res) => {
                 user: findUser,
                 userType: "trainer"
             });
+        } else if ((decoded as jwt.JwtPayload).adminId) {
+
+            const findUser = await prisma.admin.findFirst({
+                where: {
+                    id: (decoded as jwt.JwtPayload).adminId
+                }
+            })
+
+            if (!findUser) {
+                res.status(401).send("Unauthorized Access, User not found");
+                return;
+            }
+
+            res.send({
+                message: "Session Validated",
+                decoded: decoded,
+                user: findUser,
+                userType: "admin"
+            });
         }
 
     } catch (error) {
-        res.send("Seassion Validation Error" + error);
+        res
+        .status(404)
+        .send("Seassion Validation Error" + error);
     }
 })

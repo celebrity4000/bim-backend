@@ -18,7 +18,7 @@ export const signIn = asyncHandler(async (req, res) => {
             else {
                 bcrypt.compare(password, admin.password, function (err, result) {
                     if (!result) {
-                        res.send("Wrong Password");
+                        res.status(405).send("Wrong Password");
                     }
                     else {
                         jwt.sign({ adminId: admin.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
@@ -60,7 +60,7 @@ export const studentSignIn = asyncHandler(async (req, res) => {
             else {
                 bcrypt.compare(password, student.password, function (err, result) {
                     if (!result) {
-                        res.send("Wrong Password");
+                        res.status(405).send("Wrong Password");
                     }
                     else {
                         jwt.sign({ studentId: student.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
@@ -101,7 +101,7 @@ export const teacherSignIn = asyncHandler(async (req, res) => {
             else {
                 bcrypt.compare(password, teacher.password, function (err, result) {
                     if (!result) {
-                        res.send("Wrong Password");
+                        res.status(405).send("Wrong Password");
                     }
                     else {
                         jwt.sign({ teacherId: teacher.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
