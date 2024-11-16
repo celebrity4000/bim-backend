@@ -4,6 +4,8 @@ import courseCatelogRoute from './routes/courseCatelog.routes';
 import assignmentRoute from './routes/assignment.routes';
 import authRoute from './routes/auth.routes';
 import settingsRoute from './routes/settings.routes';
+import batchManagementRoute from './routes/batchManagement.routes';
+import feedbackRoute from './routes/feedback.routes';
 // import videoClassRoutes from './routes/videoClass.routes'
 import cors from 'cors'
 require('dotenv').config();
@@ -31,6 +33,8 @@ app.use ('/api/course', courseCatelogRoute);
 app.use ('/api/assignment', assignmentRoute);
 app.use ('/api/auth', authRoute);
 app.use ('/api/setting', settingsRoute);
+app.use ('/api/batch', batchManagementRoute);
+app.use ('/api/feedback', feedbackRoute);
 
 // app.use ('/', videoClassRoutes);
 
