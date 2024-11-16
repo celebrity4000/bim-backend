@@ -6,11 +6,7 @@ export const getCourse = asyncHandler (async (req: Request,res: Response)=>{
     try {
         const {adminId} = req.params;
 
-        const courses = await prisma.course.findMany({
-            where:{
-                authorId: adminId,
-            }
-        });
+        const courses = await prisma.course.findMany();
         res.send (courses);
     } catch (error) {
         res.send ('Get course error'+ error);

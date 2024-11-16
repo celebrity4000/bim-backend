@@ -1,9 +1,12 @@
-import prisma from "../../../db";
-import { asyncHandler } from "../../../utils/asyncHandler";
+
+
 import { Request, Response } from "express";
+import { asyncHandler } from "../../../../utils/asyncHandler";
+import prisma from "../../../../db";
 
 export const createAssignment = asyncHandler (async (req: Request,res: Response)=>{
     const { title, description, deadline, submissions, reviewed} = req.body;
+    const {courseId} = req.params;
     try {
         const assignment = await prisma.assignment.create ({
             data:{
@@ -11,7 +14,12 @@ export const createAssignment = asyncHandler (async (req: Request,res: Response)
                 description: description,
                 deadline: deadline,
                 submissions: submissions,
-                reviewed: reviewed
+                reviewed: reviewed,
+                course: {
+                    connect:{
+                        id: courseId
+                    }
+                }
             }
         })
         res.send ('assignment created: '+ assignment);

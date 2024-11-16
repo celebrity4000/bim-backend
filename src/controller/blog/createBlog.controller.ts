@@ -7,7 +7,6 @@ export const createBlog = asyncHandler(async (req: Request, res: Response) => {
     try {
         const { title, description, about, author, date } = req.body;
         const image = req.file?.path as string
-        const { adminId } = req.params;
 
         const imageUrl = await uploadOnCloudinary (image) as string;
 
@@ -19,11 +18,6 @@ export const createBlog = asyncHandler(async (req: Request, res: Response) => {
                 about: about,
                 description: description,
                 image: imageUrl,
-                author: {
-                    connect: {
-                        id: adminId
-                    }
-                }
             }
         })
             

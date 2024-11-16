@@ -4,12 +4,11 @@ import { asyncHandler } from "../../utils/asyncHandler";
 
 export const deleteBlog = asyncHandler(async (req: Request, res: Response) => {
     try {
-        const { blogId, adminId } = req.params;
+        const { blogId } = req.params;
 
         await prisma.blog.delete({
             where: {
                 id: blogId,
-                authorId: adminId
             }
         })
         res.send("Blog deleted Successfully")

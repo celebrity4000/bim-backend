@@ -8,15 +8,15 @@ import { deleteCourse } from '../controller/courseManagement/courseCatelog/delet
 const router = express.Router();
 
 // Get courses route
-router.route('/:adminId/get').get(getCourse);
+router.route('/get').get(getCourse);
 
 // Create course route
-router.route('/:adminId/create').post(upload.single('thumbnailImage'),createCourse);
+router.route('/create').post(upload.single('thumbnailImage'),createCourse);
 
 // Edit course route
-router.route('/edit/:adminId/:courseId').post(upload.single('thumbnailImage'),editCourse);
+router.route('/edit/:courseId').post(upload.single('thumbnailImage'),editCourse);
 
 // Delete course route
-router.route('/delete/:adminId/:courseId').post(deleteCourse);
+router.route('/delete/:courseId').post(deleteCourse);
 
 export default router;

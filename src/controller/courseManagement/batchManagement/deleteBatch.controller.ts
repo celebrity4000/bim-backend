@@ -17,4 +17,3 @@ export const deleteBatch = asyncHandler(async (req: Request, res: Response) => {
         res.send('Delete batch failed' + error);
     }
 })
-
