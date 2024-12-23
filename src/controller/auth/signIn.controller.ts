@@ -86,44 +86,46 @@ export const studentSignIn = asyncHandler(async (req, res) => {
     }
 })
 
-export const teacherSignIn = asyncHandler(async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        try {
-            const teacher = await prisma.trainer.findUnique({
-                where: {
-                    email: email as string,
-                } as any
-            })
-            if (!teacher) {
-                res.status(400).send("Teacher does not exist");
-            }
-            else {
-                bcrypt.compare(password, teacher.password, function (err, result) {
-                    if (!result) {
-                        res.status(405).send("Wrong Password");
-                    }
-                    else {
-                        jwt.sign({ teacherId: teacher.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
-                            if (err) {
-                                res.send('Error in generating token');
-                            }
-                            else {
-                                res.send({
-                                    message: "Login Successful",
-                                    teacherId: teacher.id,
-                                    token: token
-                                });
-                            }
-                        });                        
-                    }
-                });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    } catch (error) {
-        res.send('SignIn error' + error
-        );
-    }
-})
+
+// Teacher SignIn
+// export const teacherSignIn = asyncHandler(async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+//         try {
+//             const teacher = await prisma.trainer.findUnique({
+//                 where: {
+//                     email: email as string,
+//                 } as any
+//             })
+//             if (!teacher) {
+//                 res.status(400).send("Teacher does not exist");
+//             }
+//             else {
+//                 bcrypt.compare(password, teacher.password, function (err, result) {
+//                     if (!result) {
+//                         res.status(405).send("Wrong Password");
+//                     }
+//                     else {
+//                         jwt.sign({ teacherId: teacher.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
+//                             if (err) {
+//                                 res.send('Error in generating token');
+//                             }
+//                             else {
+//                                 res.send({
+//                                     message: "Login Successful",
+//                                     teacherId: teacher.id,
+//                                     token: token
+//                                 });
+//                             }
+//                         });                        
+//                     }
+//                 });
+//             }
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     } catch (error) {
+//         res.send('SignIn error' + error
+//         );
+//     }
+// })

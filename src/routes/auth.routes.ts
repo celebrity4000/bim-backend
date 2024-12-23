@@ -1,7 +1,7 @@
 import express from 'express'
-import { signIn, studentSignIn, teacherSignIn } from '../controller/auth/signIn.controller';
+import { signIn, studentSignIn } from '../controller/auth/signIn.controller';
 import { signOut } from '../controller/auth/signOut.controller';
-import { signUp, studentSignUp, teachersSignUp } from '../controller/auth/signup.controller';
+import { signUp, studentSignUp } from '../controller/auth/signup.controller';
 import { validateUserSession } from '../controller/auth/validateUserSession.controller';
 
 
@@ -12,7 +12,7 @@ router.route ('/signIn').post(signIn);
 
 router.route ('/studentSignIn').post(studentSignIn);
 
-router.route ('/teacherLogin').post(teacherSignIn);
+// router.route ('/teacherLogin').post(teacherSignIn);
 
 
 // SignOut Route
@@ -23,7 +23,7 @@ router.route ('/signUp').post(signUp);
 
 router.route ('/studentSignUp').post(studentSignUp);
 
-router.route('/teacherSignUp').post(teachersSignUp)
+// router.route('/teacherSignUp').post(teachersSignUp)
 
 // Validate User Session
 router.route ('/validateUserSession').get(validateUserSession);

@@ -41,26 +41,28 @@ export const validateUserSession = asyncHandler(async (req, res) => {
                 userType: "student"
             });
             return;
-        } else if ((decoded as jwt.JwtPayload).teacherId) {
+        } 
+        // else if ((decoded as jwt.JwtPayload).teacherId) {
 
-            const findUser = await prisma.trainer.findFirst({
-                where: {
-                    id: (decoded as jwt.JwtPayload).teacherId
-                }
-            })
+        //     const findUser = await prisma.trainer.findFirst({
+        //         where: {
+        //             id: (decoded as jwt.JwtPayload).teacherId
+        //         }
+        //     })
 
-            if (!findUser) {
-                res.status(401).send("Unauthorized Access, User not found");
-                return;
-            }
+        //     if (!findUser) {
+        //         res.status(401).send("Unauthorized Access, User not found");
+        //         return;
+        //     }
 
-            res.send({
-                message: "Session Validated",
-                decoded: decoded,
-                user: findUser,
-                userType: "trainer"
-            });
-        } else if ((decoded as jwt.JwtPayload).adminId) {
+        //     res.send({
+        //         message: "Session Validated",
+        //         decoded: decoded,
+        //         user: findUser,
+        //         userType: "trainer"
+        //     });
+        // }
+         else if ((decoded as jwt.JwtPayload).adminId) {
 
             const findUser = await prisma.admin.findFirst({
                 where: {

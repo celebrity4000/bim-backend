@@ -47,7 +47,7 @@ export const signUp = asyncHandler (async (req,res)=>{
 
 export const studentSignUp = asyncHandler (async (req,res)=>{
     try {
-        const {email,password, name} = req.body;
+        const {email,password,name} = req.body;
 
         const existingUser = await prisma.student.findFirst({
             where:{
@@ -100,54 +100,56 @@ export const studentSignUp = asyncHandler (async (req,res)=>{
     }
 })
 
-export const teachersSignUp = asyncHandler (async (req,res)=>{
-    try {
-        const {email,password, name} = req.body;
 
-        const existingUser = await prisma.trainer.findFirst({
-            where:{
-                email: email
-            }
-        })
+// Teacher Sign Up
+// export const teachersSignUp = asyncHandler (async (req,res)=>{
+//     try {
+//         const {email,password, name} = req.body;
 
-        if (existingUser){
-            res.status(400).send("User already exists.");
-            return;
-        }
+//         const existingUser = await prisma.trainer.findFirst({
+//             where:{
+//                 email: email
+//             }
+//         })
 
-        bcrypt.genSalt(10,function (err, salt){
-            if (err){
-                console.log ("Bcrypt Error: ", err);
-                return;
-            }
-            bcrypt.hash(password, salt, async function(err, hash) { 
-                if (err){
-                    console.log ('Bcrypt Hash Error: ', err);    
-                    return;           
-                }
-                const user = await prisma.trainer.create({
-                    data:{
-                        name: name,
-                        email: email,
-                        password: hash
-                    }
-                })
+//         if (existingUser){
+//             res.status(400).send("User already exists.");
+//             return;
+//         }
+
+//         bcrypt.genSalt(10,function (err, salt){
+//             if (err){
+//                 console.log ("Bcrypt Error: ", err);
+//                 return;
+//             }
+//             bcrypt.hash(password, salt, async function(err, hash) { 
+//                 if (err){
+//                     console.log ('Bcrypt Hash Error: ', err);    
+//                     return;           
+//                 }
+//                 const user = await prisma.trainer.create({
+//                     data:{
+//                         name: name,
+//                         email: email,
+//                         password: hash
+//                     }
+//                 })
                 
-                jwt.sign({ teacherId: user.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
-                    if (err) {
-                        res.send('Error in generating token');
-                    }
-                    else {
-                        res.send({
-                            message: "Teacher Registered successfully",
-                            teacherId: user.id,
-                            token: token
-                        });
-                    }
-                });
-            });
-        })
-    } catch (error) {
-        res.send ("Sign Up error" + error);        
-    }
-})
+//                 jwt.sign({ teacherId: user.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
+//                     if (err) {
+//                         res.send('Error in generating token');
+//                     }
+//                     else {
+//                         res.send({
+//                             message: "Teacher Registered successfully",
+//                             teacherId: user.id,
+//                             token: token
+//                         });
+//                     }
+//                 });
+//             });
+//         })
+//     } catch (error) {
+//         res.send ("Sign Up error" + error);        
+//     }
+// })

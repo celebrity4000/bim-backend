@@ -1,6 +1,6 @@
 import express from 'express'
 import { createBlog } from '../controller/blog/createBlog.controller';
-import { getBlog } from '../controller/blog/getBlog.controllet';
+import { getBlog } from '../controller/blog/getBlog.controller';
 import { upload } from '../middleware/multer.middleware';
 import { editBlog } from '../controller/blog/editBlog.controller';
 import { deleteBlog } from '../controller/blog/deleteBlog.controller';
