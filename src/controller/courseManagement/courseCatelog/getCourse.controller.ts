@@ -4,7 +4,7 @@ import { asyncHandler } from "../../../utils/asyncHandler";
 
 export const getCourse = asyncHandler (async (req: Request,res: Response)=>{
     try {
-        const {adminId} = req.params;
+        // const {adminId} = req.params;
 
         const courses = await prisma.course.findMany();
         res.send (courses);

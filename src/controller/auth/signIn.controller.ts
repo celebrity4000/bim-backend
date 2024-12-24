@@ -21,19 +21,22 @@ export const signIn = asyncHandler(async (req, res) => {
                         res.status(405).send("Wrong Password");
                     }
                     else {
-                        jwt.sign({ adminId: admin.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
-                            if (err) {
-                                res.send('Error in generating token');
-                            }
-                            else {
-                                res.send({
-                                    message: "Login Successful",
-                                    adminId: admin.id,
-                                    token: token
-                                });
-                            }
-                        });
+                        res.send({message: "Login Successful"})
                     }
+                    // else {
+                    //     jwt.sign({ adminId: admin.id }, process.env.JWT_SECRET as string, { expiresIn: process.env.JWT_EXPIRES_IN }, (err, token) => {
+                    //         if (err) {
+                    //             res.send('Error in generating token');
+                    //         }
+                    //         else {
+                    //             res.send({
+                    //                 message: "Login Successful",
+                    //                 adminId: admin.id,
+                    //                 token: token
+                    //             });
+                    //         }
+                    //     });
+                    // }
                 });
             }
         } catch (error) {
