@@ -19,7 +19,7 @@ export const createCourse = asyncHandler (async (req: Request,res: Response)=>{
                 description: description,
                 content: content,
                 instructorName: instructorName,
-                enrolledStudent: enrolledStudent,
+                enrolledStudent: '0',
                 imageUrl: cloudinaryUrl,
                 videoUrl: '',
                 // author: {
